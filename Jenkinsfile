@@ -6,22 +6,22 @@ node{
       }
    
    stage('Docker Build') {
-     def app = docker.build "anandbk1/python-newrelic"
+     def app = docker.build "anandbk1/python-relic"
     }
    
    stage("Tag & Push image"){
       withDockerRegistry([credentialsId: 'dockerID',url: ""]) {
-          sh 'docker tag anandbk1/python-newrelic anandbk1/python-newrelic:dev'
-          sh 'docker push anandbk1/python-newrelic:dev'
-          sh 'docker push anandbk1/python-newrelic:latest'
+          sh 'docker tag anandbk1/python-relic anandbk1/python-relic:dev'
+          sh 'docker push anandbk1/python-relic:dev'
+          //sh 'docker push anandbk1/python-newrelic:latest'
       }
     }
    
    stage("App deployment started"){
      sh 'oc login --token=AUeAqkp8CQOqlTgbqbSv_PlvL_TxuDGQbtqDVtRQRvE --server=https://api.us-west-1.starter.openshift-online.com:6443'
-     sh 'oc project jenkin-openshift'
+     sh 'oc project pyrelic'
      // sh 'oc new-app --name py-anand anandbk1/python-newrelic'
-      sh 'oc rollout latest dc/py-anand -o json' 
+      sh 'oc rollout latest dc/pyrelic -o json' 
       //sh 'oc rollout latest anandbk1/python-newrelic --name python \
        //   --env NEWRELIC_LICENSE=f8e0ea62a1e411cdcc3f60f93324a7c497f84a27 \
          //       NEWRELIC_APPNAME=pyapp2'
