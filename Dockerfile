@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM anandbk1/python-newrelic
+FROM anandbk1/python-relic
 
 MAINTAINER ANAND B K
 
