@@ -11,7 +11,7 @@ node{
    
    stage("Tag & Push image"){
       withDockerRegistry([credentialsId: 'dockerID',url: ""]) {
-          sh 'docker tag manee2k6/py-spartans anandbk1/python-newrelic:dev'
+          sh 'docker tag anandbk1/python-newrelic anandbk1/python-newrelic:dev'
           sh 'docker push anandbk1/python-newrelic:dev'
           sh 'docker push anandbk1/python-newrelic:latest'
       }
